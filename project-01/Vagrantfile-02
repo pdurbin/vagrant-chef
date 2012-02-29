@@ -1,0 +1,17 @@
+Vagrant::Config.run do |config|
+	config.vm.define :m1 do |node_1|
+		node_1.vm.box = "lucid64"
+		node_1.vm.customize do |vm|
+			vm.memory_size = 512
+			vm.cpu_count = 2
+			vm.name = "test machine"
+		end
+		node_1.vm.provision :chef_solo do |chef|
+			chef.cookbooks_path = "cookbooks"
+			chef.add_recipe "test::localapt"
+			chef.json.merge!({
+				:run_list => [ "recipe[test::localapt]" ],
+			})
+		end
+	end
+end
