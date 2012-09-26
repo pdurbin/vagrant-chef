@@ -2,11 +2,7 @@ Vagrant::Config.run do |config|
 	config.vm.define :db do |node_1|
 		node_1.vm.box = "precise64"
 		node_1.vm.network("172.18.0.2", :netmask => "255.255.0.0")
-		node_1.vm.customize do |vm|
-			vm.memory_size = 512
-			vm.cpu_count = 1
-			vm.name = "database-server"
-		end
+		node_1.vm.customize [ "modifyvm", :id, "--memory", 512, "--cpus", 1, "--name", "database-server" ]
 		node_1.vm.provision :chef_solo do |chef|
 			chef.cookbooks_path = "cookbooks"
 			chef.add_recipe "test::users"
@@ -18,11 +14,7 @@ Vagrant::Config.run do |config|
 	config.vm.define :ws do |node_2|
 		node_2.vm.box = "precise32"
 		node_2.vm.network("172.18.0.3", :netmask => "255.255.0.0")
-		node_2.vm.customize do |vm|
-			vm.memory_size = 512
-			vm.cpu_count = 1
-			vm.name = "web-server"
-		end
+		node_2.vm.customize [ "modifyvm", :id, "--memory", 512, "--cpus", 1, "--name", "web-server" ]
 		node_2.vm.provision :chef_solo do |chef|
 			chef.cookbooks_path = "cookbooks"
 			chef.add_recipe "test::users"
