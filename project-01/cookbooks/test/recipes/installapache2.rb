@@ -5,37 +5,37 @@
 #	action :install
 #end
 
-#execute "move gpg" do
-#	user "root"
-#	group "admin"
-#	cwd "/tmp"
-#	command "mv /var/lib/apt/lists/*.gpg /tmp"
-#	action :run
-#end
+execute "move gpg" do
+	user "root"
+	group "admin"
+	cwd "/tmp"
+	command "mv /var/lib/apt/lists/*.gpg /tmp"
+	action :run
+end
 
-#execute "remove aptlists" do
-#	user "root"
-#	group "admin"
-#	cwd "/tmp"
-#	command "rm -rf /var/lib/apt/lists/*"
-#	action :run
-#end
+execute "remove aptlists" do
+	user "root"
+	group "admin"
+	cwd "/tmp"
+	command "rm -rf /var/lib/apt/lists/*"
+	action :run
+end
 
-#execute "create partial" do
-#	user "root"
-#	group "admin"
-#	cwd "/tmp"
-#	command "mkdir /var/lib/apt/lists/partial"
-#	action :run
-#end
+execute "create partial" do
+	user "root"
+	group "admin"
+	cwd "/tmp"
+	command "mkdir /var/lib/apt/lists/partial"
+	action :run
+end
 
-#execute "move back gpg" do
-#	user "root"
-#	group "admin"
-#	cwd "/tmp"
-#	command "mv /tmp/*.gpg /var/lib/apt/lists/"
-#	action :run
-#end
+execute "move back gpg" do
+	user "root"
+	group "admin"
+	cwd "/tmp"
+	command "mv /tmp/*.gpg /var/lib/apt/lists/"
+	action :run
+end
 
 execute "apt update" do
 	user "root"
