@@ -37,13 +37,13 @@
 #	action :run
 #end
 
-#execute "apt update" do
-#	user "root"
-#	group "admin"
-#	cwd "/tmp"
-#	command "apt-get update"
-#	action :run
-#end
+execute "apt update" do
+	user "root"
+	group "admin"
+	cwd "/tmp"
+	command "apt-get update"
+	action :run
+end
 
 execute "install-apache" do
 	user "root"
